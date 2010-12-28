@@ -44,6 +44,7 @@ public class UxnuInterface {
 	 * @return 短縮されたURL(失敗の場合はもとの文字列)
 	 * @since 1.0
 	 */
+	@SuppressWarnings("deprecation") //Androidでの動作確認までdeprecated放置
 	public static String shortenURL (String url) {
 		String APIUrl = "http://ux.nu/api/short?url="+URLEncoder.encode(url)+"&format=plain";
 		String ret;
@@ -63,6 +64,7 @@ public class UxnuInterface {
 	 * @return 展開されたURL(失敗の場合はもとの文字列)
 	 * @since 1.1
 	 */
+	@SuppressWarnings("deprecation")
 	public static String expandURL (String url) {
 		String APIUrl = "http://ux.nu/hugeurl?url="+URLEncoder.encode(url);
 		String ret;
