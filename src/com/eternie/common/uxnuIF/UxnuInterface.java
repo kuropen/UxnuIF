@@ -65,6 +65,7 @@ public class UxnuInterface {
 	 * ux.nu APIにアクセスしてURLを短縮する。このときサーバーから得たサイトに関する詳細データを格納した{@link UxnuShortenedSiteDetail}クラス構造体を返す。
 	 * @param url 短縮対象のURL
 	 * @return サイトデータを格納した{@link UxnuShortenedSiteDetail}のインスタンス (失敗の場合は<code>null</code>)
+	 * @since 2.0
 	 */
 	@SuppressWarnings("deprecation")
 	public static UxnuShortenedSiteDetail shortenURLWithDetail (String url) {
