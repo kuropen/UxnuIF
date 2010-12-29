@@ -1,3 +1,12 @@
+--- BEGIN ACKNOWLEDGEMENTS ---
+
+This software contains JSON.simple - A simple Java toolkit for JSON.
+Reference: http://code.google.com/p/json-simple/
+
+JSON.simple is licensed under Apache License, the same condition as described below.
+
+--- END ACKNOWLEDGEMENTS ---
+
 All rights reserved. Copyright (C) 2010 Eternie, Hirochika Yuda.
 
 Licensed under the Apache License, Version 2.0 (the "License");
