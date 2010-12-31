@@ -14,7 +14,7 @@ import org.json.simple.parser.JSONParser;
 /**
  * ux.nu 操作ライブラリ
  * @author Hirochika Yuda
- * @version 1.1
+ * @version 1.2
  * @see <a href="http://ux.nu/developer.html">Developer - ux.nu</a>
  */
 public class UxnuInterface {
@@ -46,6 +46,7 @@ public class UxnuInterface {
 	 * @param url 短縮対象のURL
 	 * @return 短縮されたURL(失敗の場合はもとの文字列)
 	 * @since 1.0
+	 * @deprecated {@link #shortenURLWithDetail(String)}を実行の上、戻り値を用いて{@link UxnuShortenedSiteDetail#getUrl()}を呼び出すことを推奨する。
 	 */
 	@SuppressWarnings("deprecation") //Androidでの動作確認までdeprecated放置
 	public static String shortenURL (String url) {
@@ -65,7 +66,7 @@ public class UxnuInterface {
 	 * ux.nu APIにアクセスしてURLを短縮する。このときサーバーから得たサイトに関する詳細データを格納した{@link UxnuShortenedSiteDetail}クラス構造体を返す。
 	 * @param url 短縮対象のURL
 	 * @return サイトデータを格納した{@link UxnuShortenedSiteDetail}のインスタンス (失敗の場合は<code>null</code>)
-	 * @since 2.0
+	 * @since 1.2
 	 */
 	@SuppressWarnings("deprecation")
 	public static UxnuShortenedSiteDetail shortenURLWithDetail (String url) {
