@@ -1,1 +1,4 @@
 com.eternie.common.uxnuIF
+com.eternie.common.uxnuIF.test
+org.json.simple
+org.json.simple.parser

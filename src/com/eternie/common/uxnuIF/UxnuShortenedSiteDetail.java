@@ -3,7 +3,7 @@ package com.eternie.common.uxnuIF;
 /**
  * ux.nu で短縮したサイトの詳細データ。
  * @author Eternie, Hirochika Yuda
- * @see {@link UxnuInterface#shortenURLWithDetail(String)}
+ * @see UxnuInterface#shortenURLWithDetail(String)
  */
 public class UxnuShortenedSiteDetail {
 	private boolean blacklist;
