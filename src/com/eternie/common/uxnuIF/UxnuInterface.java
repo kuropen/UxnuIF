@@ -31,14 +31,19 @@ public class UxnuInterface {
 		URLConnection connection = url.openConnection();
 		connection.setDoInput(true);
 		InputStream inStream = connection.getInputStream();
-		BufferedReader input =
-		new BufferedReader(new InputStreamReader(inStream));
-	
-		String line = "";
-		String ret = "";
-		while ((line = input.readLine()) != null)
-			ret += line;
-		return ret;
+		
+		try {
+			BufferedReader input =
+					new BufferedReader(new InputStreamReader(inStream));
+			
+			String line = "";
+			String ret = "";
+			while ((line = input.readLine()) != null)
+				ret += line;
+			return ret;
+		}finally{
+			inStream.close();
+		}
 	}
 	
 	/**
@@ -91,13 +96,14 @@ public class UxnuInterface {
 	}
 	
 	/**
-	 * ux.nu APIにアクセスしてURLを展開する
+	 * ux.nu HugeURL APIにアクセスしてURLを展開する。他サービスにも適用可能。<br>
+	 * 通常は expandUrl を使用するべき。
 	 * @param url 展開対象のURL
 	 * @return 展開されたURL(失敗の場合はもとの文字列)
 	 * @since 1.1
 	 */
 	@SuppressWarnings("deprecation")
-	public static String expandURL (String url) {
+	public static String hugeUrl (String url) {
 		String APIUrl = "http://ux.nu/hugeurl?url="+URLEncoder.encode(url);
 		String ret;
 		try {
@@ -107,6 +113,37 @@ public class UxnuInterface {
 			ret = null;
 			e.printStackTrace();
 			return url;
+		}
+	}
+	
+	public static UxnuExpandedSiteDetail expandURL (String url) {
+		JSONParser jp = new JSONParser();
+		String APIUrl = "http://ux.nu/api/expand?url="+URLEncoder.encode(url);
+		String fetchResult;
+		try {
+			fetchResult = readFromURL(APIUrl);
+			JSONObject obj = (JSONObject) jp.parse(fetchResult);
+			JSONObject data = (JSONObject) obj.get("data");
+			boolean bl = Boolean.parseBoolean((String)data.get("blacklist"));
+			boolean mw = Boolean.parseBoolean((String)data.get("malware"));
+			boolean sf = Boolean.parseBoolean((String)data.get("safe"));
+			String addr = (String)data.get("exp");
+			String origaddr = (String)data.get("origexp");
+			long tmpWhiteList;
+			try {
+				tmpWhiteList = (Long)data.get("whitelist");
+			}catch(NullPointerException e) {
+				tmpWhiteList = 0;
+			}
+			boolean nw = Boolean.parseBoolean((String)obj.get("new"));
+			long st = (Long)obj.get("status_code");
+			//UxnuShortenedSiteDetail ret = new UxnuShortenedSiteDetail(bl,mw,sf,addr,nw,st);
+			UxnuExpandedSiteDetail ret = new UxnuExpandedSiteDetail(bl,mw,sf,addr,nw,(int)st,(tmpWhiteList == 1) ? true : false, origaddr);
+			return ret;
+		} catch (Exception e) {
+			fetchResult = null;
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
