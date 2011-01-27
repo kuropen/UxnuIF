@@ -48,7 +48,6 @@ public class UxnuInterface {
 	 * @since 1.0
 	 * @deprecated {@link #shortenURLWithDetail(String)}を実行の上、戻り値を用いて{@link UxnuShortenedSiteDetail#getUrl()}を呼び出すことを推奨する。
 	 */
-	@SuppressWarnings("deprecation") //Androidでの動作確認までdeprecated放置
 	public static String shortenURL (String url) {
 		String APIUrl = "http://ux.nu/api/short?url="+URLEncoder.encode(url)+"&format=plain";
 		String ret;
