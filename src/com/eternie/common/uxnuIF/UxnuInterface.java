@@ -117,6 +117,7 @@ public class UxnuInterface {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static UxnuExpandedSiteDetail expandURL (String url) {
 		JSONParser jp = new JSONParser();
 		String APIUrl = "http://ux.nu/api/expand?url="+URLEncoder.encode(url);
