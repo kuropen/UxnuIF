@@ -137,10 +137,9 @@ public class UxnuInterface {
 			}catch(NullPointerException e) {
 				tmpWhiteList = 0;
 			}
-			boolean nw = Boolean.parseBoolean((String)obj.get("new"));
 			long st = (Long)obj.get("status_code");
 			//UxnuShortenedSiteDetail ret = new UxnuShortenedSiteDetail(bl,mw,sf,addr,nw,st);
-			UxnuExpandedSiteDetail ret = new UxnuExpandedSiteDetail(bl,mw,sf,addr,nw,(int)st,(tmpWhiteList == 1) ? true : false, origaddr);
+			UxnuExpandedSiteDetail ret = new UxnuExpandedSiteDetail(bl,mw,sf,addr,(int)st,(tmpWhiteList == 1) ? true : false, origaddr);
 			return ret;
 		} catch (Exception e) {
 			fetchResult = null;

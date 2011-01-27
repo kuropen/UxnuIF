@@ -7,6 +7,8 @@ package com.eternie.common.uxnuIF;
  */
 public class UxnuShortenedSiteDetail extends UxnuSiteDetail {
 	
+	private boolean nw;
+	
 	/**
 	 * 通常のコンストラクタ。主にパースしたJSONデータから構造体を初期化する手段として、ライブラリ内部で使用する。
 	 * @param bl ブラックリスト
@@ -18,7 +20,8 @@ public class UxnuShortenedSiteDetail extends UxnuSiteDetail {
 	 */
 	public UxnuShortenedSiteDetail(boolean bl, boolean mw, boolean sf,
 			String addr, boolean nw, int st) {
-		super(bl, mw, sf, addr, nw, st);
+		super(bl, mw, sf, addr, st);
+		this.nw = nw;
 	}
 
 	/**
@@ -34,6 +37,14 @@ public class UxnuShortenedSiteDetail extends UxnuSiteDetail {
 		System.out.println("URL:" + this.getUrl());
 		System.out.println("New:" + this.isNew());
 		System.out.println("Status:" + this.getStatus());
+	}
+	
+	/**
+	 * 新規登録か
+	 * @return 新規登録フラグ
+	 */
+	public boolean isNew () {
+		return nw;
 	}
 	
 }

@@ -12,10 +12,10 @@ public class UxnuShortenTest {
 		final String targetURL = "http://www.gehirn.co.jp/";
 		final String targetURL2 = "http://ux.nu/Gehirn";
 		final String targetURL3 = "http://ux.nu/secure";
-		UxnuShortenedSiteDetail result = UxnuInterface.shortenURLWithDetail(targetURL);
+		UxnuSiteDetail result = UxnuInterface.shortenURLWithDetail(targetURL);
 		result.dump();
-		UxnuExpandedSiteDetail result2 = UxnuInterface.expandURL(targetURL2);
-		UxnuExpandedSiteDetail result3 = UxnuInterface.expandURL(targetURL3);
+		UxnuSiteDetail result2 = UxnuInterface.expandURL(targetURL2);
+		UxnuSiteDetail result3 = UxnuInterface.expandURL(targetURL3);
 		result2.dump();
 		result3.dump();
 	}

@@ -11,7 +11,6 @@ public abstract class UxnuSiteDetail {
 	private boolean malware;
 	private boolean safe;
 	private String url;
-	private boolean isNew;
 	private int status;
 	
 	/**
@@ -22,13 +21,29 @@ public abstract class UxnuSiteDetail {
 	 * @param addr URL
 	 * @param nw 新規登録
 	 * @param st ステータスコード
+	 * @deprecated nwは{@link UxnuShortenedSiteDetail}特有フィールドとなったため不要
 	 */
 	public UxnuSiteDetail (boolean bl, boolean mw, boolean sf, String addr, boolean nw, int st) {
 		blacklist = bl;
 		malware = mw;
 		safe = sf;
 		url = addr;
-		isNew = nw;
+		status = st;
+	}
+	
+	/**
+	 * 通常のコンストラクタ。主にパースしたJSONデータから構造体を初期化する手段として、ライブラリ内部で使用する。
+	 * @param bl ブラックリスト
+	 * @param mw マルウェア
+	 * @param sf 安全
+	 * @param addr URL
+	 * @param st ステータスコード
+	 */
+	public UxnuSiteDetail (boolean bl, boolean mw, boolean sf, String addr, int st) {
+		blacklist = bl;
+		malware = mw;
+		safe = sf;
+		url = addr;
 		status = st;
 	}
 	
@@ -58,13 +73,6 @@ public abstract class UxnuSiteDetail {
 	 */
 	public String getUrl () {
 		return url;
-	}
-	
-	/**
-	 * 新規登録か
-	 */
-	public boolean isNew () {
-		return isNew;
 	}
 	
 	/**
