@@ -67,7 +67,7 @@ public class UxnuInterface {
 	}
 	
 	/**
-	 * ux.nu APIにアクセスしてURLを短縮する。このときサーバーから得たサイトに関する詳細データを格納した{@link UxnuShortenedSiteDetail}クラス構造体を返す。
+	 * ux.nu APIにアクセスしてURLを短縮する。
 	 * @param url 短縮対象のURL
 	 * @return サイトデータを格納した{@link UxnuShortenedSiteDetail}のインスタンス (失敗の場合は<code>null</code>)
 	 * @since 1.2
@@ -98,7 +98,7 @@ public class UxnuInterface {
 	
 	/**
 	 * ux.nu HugeURL APIにアクセスしてURLを展開する。他サービスにも適用可能。<br>
-	 * 通常は expandUrl を使用するべき。
+	 * ux.nu のURL展開を目的とする場合は{@link #expandURL(String)}を推奨。
 	 * @param url 展開対象のURL
 	 * @return 展開されたURL(失敗の場合はもとの文字列)
 	 * @since 1.1
@@ -117,6 +117,11 @@ public class UxnuInterface {
 		}
 	}
 	
+	/**
+	 * ux.nu Expand APIを用いて短縮URLを展開する。他サービスのURLも含めて展開したい場合は{@link #hugeUrl(String)}を使用する。<br>
+	 * @param url 展開するURL
+	 * @return サイトデータを格納した{@link UxnuExpandedSiteDetail}のインスタンス (失敗の場合は<code>null</code>)
+	 */
 	@SuppressWarnings("deprecation")
 	public static UxnuExpandedSiteDetail expandURL (String url) {
 		JSONParser jp = new JSONParser();
