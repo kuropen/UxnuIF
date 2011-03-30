@@ -69,11 +69,11 @@ public class UxnuInterface {
 	/**
 	 * ux.nu APIにアクセスしてURLを短縮する。
 	 * @param url 短縮対象のURL
-	 * @return サイトデータを格納した{@link UxnuShortenedSiteDetail}のインスタンス (失敗の場合は<code>null</code>)
+	 * @return サイトデータを格納した{@link UxnuShortenedSiteDetail}のインスタンス
 	 * @since 1.2
 	 */
 	@SuppressWarnings("deprecation")
-	public static UxnuShortenedSiteDetail shortenURLWithDetail (String url) {
+	public static UxnuShortenedSiteDetail shortenURLWithDetail (String url) throws UxnuProcessException {
 		JSONParser jp = new JSONParser();
 		String APIUrl = "http://ux.nu/api/short?url="+URLEncoder.encode(url);
 		String fetchResult;
@@ -90,9 +90,7 @@ public class UxnuInterface {
 			UxnuShortenedSiteDetail ret = new UxnuShortenedSiteDetail(bl,mw,sf,addr,nw,st);
 			return ret;
 		} catch (Exception e) {
-			fetchResult = null;
-			e.printStackTrace();
-			return null;
+			throw new UxnuProcessException(e);
 		}
 	}
 	
@@ -111,9 +109,7 @@ public class UxnuInterface {
 			ret = readFromURL(APIUrl);
 			return ret;
 		} catch (IOException e) {
-			ret = null;
-			e.printStackTrace();
-			return url;
+			throw new UxnuProcessException(e);
 		}
 	}
 	
@@ -147,9 +143,7 @@ public class UxnuInterface {
 			UxnuExpandedSiteDetail ret = new UxnuExpandedSiteDetail(bl,mw,sf,addr,(int)st,(tmpWhiteList == 1) ? true : false, origaddr);
 			return ret;
 		} catch (Exception e) {
-			fetchResult = null;
-			e.printStackTrace();
-			return null;
+			throw new UxnuProcessException(e);
 		}
 	}
 }
